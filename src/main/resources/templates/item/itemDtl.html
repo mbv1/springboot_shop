@@ -13,20 +13,21 @@
     <script th:inline="javascript">
         $(document).ready(function(){
 
-            calculateToalPrice();
+            calculateTotalPrice();
 
             $("#count").change( function(){
-                calculateToalPrice();
+                calculateTotalPrice();
             });
         });
 
-        function calculateToalPrice(){
+        function calculateTotalPrice(){
             var count = $("#count").val();
             var price = $("#price").val();
             var totalPrice = price*count;
             $("#totalPrice").html(totalPrice + '원');
         }
 
+/* 스프링 시큐리티를 사용할 경우 POST 방식의 데이터 전송에는 CSRF 토큰 값이 필요하므로 해당 값들을 조회*/
         function order(){
             var token = $("meta[name='_csrf']").attr("content");
             var header = $("meta[name='_csrf_header']").attr("content");
@@ -106,6 +107,8 @@
                 }
             });
         }
+
+
 
     </script>
 </th:block>

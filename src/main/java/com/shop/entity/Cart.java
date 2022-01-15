@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class Cart {
+public class Cart{
 
     @Id
     @Column(name = "cart_id")
@@ -21,4 +21,10 @@ public class Cart {
     @OneToOne(fetch = FetchType.LAZY)   //회원 엔티티와 일대일 매핑
     @JoinColumn(name = "member_id")     //매핑할 외래키 지정
     private Member member;
+
+    public static Cart createCart(Member member) {
+        Cart cart = new Cart();
+        cart.setMember(member);
+        return cart;
+    }
 }
